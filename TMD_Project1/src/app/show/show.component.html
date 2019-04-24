@@ -1,0 +1,19 @@
+
+<div *ngIf="!isClicked">
+    <div class="container search">
+        <div class="input-group mb-3" >
+          <input type="text" #txt class="form-control" placeholder="Type twitter url HERE" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button (click)="search(txt.value)" class="btn btn-outline-info" type="button">Show Me!</button>
+          </div>
+        </div>
+      </div>
+</div>
+<div *ngIf="isClicked">
+    <div>
+        <button class="backbutton btn btn-outline-info" (click)="newSearch()">
+            New search
+        </button>
+    </div>
+    <graph [nodes]="nodes" [links]="links"></graph>
+</div>

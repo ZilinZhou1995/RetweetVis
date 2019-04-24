@@ -1,0 +1,11 @@
+.search {
+    position: relative;
+    top: 250px;
+    width: 50%;
+}
+
+.backbutton {
+    position: relative;
+    left: 45%;
+    margin-top: 20px;
+}
