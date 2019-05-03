@@ -59,12 +59,54 @@ def get_all_branch_status(api=None, status_id_list=None):
         retweets = api.GetRetweets(str(status_id), count=100, trim_user=False)
         id_list = []
         for retweet in retweets:
+            # print (retweet)
             id_list.append(retweet._json['id'])
         dict_id_relationship[str(status_id)] = id_list
         # Show the return result here 
         # print(tweet)
     print (dict_id_relationship)
     return dict_id_relationship
+
+# Working in progress -------------------
+def get_jsonfile(api=None, status_id_list=None):
+    res_json_objs = []
+    
+
+    for status_id in status_id_list:
+        cur_json = {}
+        tweet = api.GetStatus(status_id)
+        # print (tweet)
+        cur_json['tweet_id'] = tweet._json['id']
+        cur_json['created_at'] = tweet._json['created_at']
+        cur_json['retweet_count'] = tweet._json['retweet_count']
+        cur_json['favorite_count'] = tweet._json['favorite_count']
+        cur_json['user_profile_image_https'] = tweet._json['user']['profile_image_url_https']
+        cur_json['user_followers_count'] = tweet._json['user']['followers_count']
+        cur_json['user_name'] = tweet._json['user']['name']
+        cur_json['retweet_list'] = []
+
+        retweets = api.GetRetweets(str(status_id), count=100, trim_user=False)
+
+        for retweet in retweets:
+            cur_retweet_json = {}
+            cur_retweet_json['tweet_id'] = tweet._json['id']
+            cur_retweet_json['created_at'] = tweet._json['created_at']
+            cur_retweet_json['retweet_count'] = tweet._json['retweet_count']
+            cur_retweet_json['favorite_count'] = tweet._json['favorite_count']
+            cur_retweet_json['user_profile_image_https'] = tweet._json['user']['profile_image_url_https']
+            cur_retweet_json['user_followers_count'] = tweet._json['user']['followers_count']
+            cur_retweet_json['user_name'] = tweet._json['user']['name']
+            cur_json['retweet_list'].append(cur_retweet_json)
+
+        res_json_objs.append(cur_json)
+
+    print ("exe")
+    f = open('./output/all_retweet.json', "w+")
+    f.write(json.dumps(res_json_objs))
+    f.close()
+    
+
+
 
 
 def get_tweets(api=None, screen_name=None):
@@ -113,9 +155,10 @@ if __name__ == "__main__" and __package__ is None:
             f.write(json.dumps(tweet._json))
             f.write('\n')
     
-#  Change the id here !!!!!!!!!!
+    #  Change the id here !!!!!!!!!!
     status_id_list = get_parent_status(api, '1117135227510501376')
     get_all_branch_status(api=api, status_id_list=status_id_list)
+    get_jsonfile(api=api, status_id_list=status_id_list)
 
 
 
