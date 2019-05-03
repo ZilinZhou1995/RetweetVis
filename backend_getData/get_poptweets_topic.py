@@ -146,17 +146,17 @@ if __name__ == "__main__" and __package__ is None:
     )
     topic = sys.argv[1]
     print(topic)
-    pop = api.GetSearch(term=str(topic), count=int(10), result_type='popular')
+    # pop = api.GetSearch(term=str(topic), count=int(10), result_type='popular')
     
 
 
-    with open('./output/pop.json', 'w+') as f:
-        for tweet in pop:
-            f.write(json.dumps(tweet._json))
-            f.write('\n')
+    # with open('./output/pop.json', 'w+') as f:
+    #     for tweet in pop:
+    #         f.write(json.dumps(tweet._json))
+    #         f.write('\n')
     
     #  Change the id here !!!!!!!!!!
-    status_id_list = get_parent_status(api, '1117135227510501376')
+    status_id_list = get_parent_status(api, str(sys.argv[1]))
     get_all_branch_status(api=api, status_id_list=status_id_list)
     get_jsonfile(api=api, status_id_list=status_id_list)
 
