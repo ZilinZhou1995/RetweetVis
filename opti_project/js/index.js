@@ -173,17 +173,32 @@ function render() {
         var targetDistance = intersects[ 0 ].distance;
         // camera.focusAt( targetDistance ); // using Cinematic camera focusAt method
         if ( INTERSECTED != intersects[ 0 ].object ) {
-            // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+            if ( INTERSECTED ) {
+                // INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+
+            }
             INTERSECTED = intersects[ 0 ].object;
             // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
             // INTERSECTED.material.emissive.setHex( 0xff0000 );
-            console.log(INTERSECTED);
+            if (INTERSECTED.type == "Mesh") {
+                $('#modal-11').addClass('md-show');
+            }
+            
+            
+            
         }
     } else {
-        // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        if ( INTERSECTED ) {
+            // INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
+        }
         // console.log(INTERSECTED);
+        $('#modal-11').removeClass('md-show');
         INTERSECTED = null;
     }
+}
+
+function click() {
+    $('#myModal').modal('show');
 }
 
 
