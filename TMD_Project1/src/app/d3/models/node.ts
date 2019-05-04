@@ -14,6 +14,7 @@ export class Node implements d3.SimulationNodeDatum {
   linkCount: number = 0;
   name: String = '';
   timestamp: String = '';
+  text: String = '';
 
   constructor(id) {
     this.id = id;
@@ -32,7 +33,10 @@ export class Node implements d3.SimulationNodeDatum {
   }
 
   get color() {
-    if(this.id == '1' || this.id == '16' || this.id == '71' || this.id == '84' || this.id == '21' || this.id == '89') {
+    if (this.id == '1') {
+      return APP_CONFIG.SPECTRUM[7];
+    }
+    if(this.id == '3' || this.id == '13' || this.id == '21') {
       return APP_CONFIG.SPECTRUM[5];
     }
     // let index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
