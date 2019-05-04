@@ -51,7 +51,7 @@ export class ShowComponent {
       this.links.push(new Link(1, count - 1));
     }
 
-    for (let i = 2; i <= 8; i++) {
+    for (let i = 2; i <= 3; i++) {
       let temp = count;
       if (i === 3) {
         for (let j = temp; j < temp + 20 && j <= 50; j++) {
@@ -66,9 +66,18 @@ export class ShowComponent {
           this.links.push(new Link(i, count - 1));
         }
       }
-      
-      
+    }
 
+    for (let i = 1; i <= 3; i++) {
+      this.nodes[getIndex(21)].linkCount++;
+      this.nodes[getIndex(count++)].linkCount++;
+      this.links.push(new Link(21, count - 1));
+    }
+
+    for (let j = count; count <= 50; count++) {
+      this.nodes[getIndex(4)].linkCount++;
+      this.nodes[getIndex(count)].linkCount++;
+      this.links.push(new Link(4, count));
     }
 
     // for (let i = 1; i < this.data.length; i++) {
@@ -83,7 +92,7 @@ export class ShowComponent {
   ngOnInit() {
     let i = 4;
     for(let node of this.nodes) {
-      if(node.id == '1' || node.id == '13' || node.id == '21') {
+      if(node.id == '1' || node.id == '42' || node.id == '21') {
         node.timestamp = d[i].created_at;
         node.name = d[i].user.name;
         node.text = d[i].text;
