@@ -36,7 +36,7 @@ export class Node implements d3.SimulationNodeDatum {
     if (this.id == '1') {
       return APP_CONFIG.SPECTRUM[7];
     }
-    if(this.id == '3' || this.id == '13' || this.id == '21') {
+    if(this.id == '3' || this.id == '42' || this.id == '21') {
       return APP_CONFIG.SPECTRUM[5];
     }
     // let index = Math.floor(APP_CONFIG.SPECTRUM.length * this.normal());
