@@ -96,7 +96,7 @@ export class ShowComponent {
         node.timestamp = d[i].created_at;
         node.name = d[i].user.name;
         node.text = d[i].text.split(" ")[0];
-        node.url = d[i].text.split(" ")[1];
+        node.url = 'https://twitter.com/' + d[i].user.name + '/status/' + d[i].id_str;
 
         i = Math.abs(i - 1) % 5;
       } else {
