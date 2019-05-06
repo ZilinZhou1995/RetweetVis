@@ -17,7 +17,7 @@ export class ShowComponent {
 
   constructor() {
     const N = APP_CONFIG.N,
-          getIndex = number => number - 1;
+      getIndex = number => number - 1;
 
     /** constructing the nodes array */
     for (let i = 1; i <= N; i++) {
@@ -39,7 +39,7 @@ export class ShowComponent {
     //     if(i*m % 3 == 0) {
     //       this.links.push(new Link(i, i * m));
     //     }
-        
+
     //   }
     // }
     // arr: Number[] = [];
@@ -59,7 +59,7 @@ export class ShowComponent {
           this.nodes[getIndex(count++)].linkCount++;
           this.links.push(new Link(i, count - 1));
         }
-      }else{
+      } else {
         for (let j = temp; j < temp + 10 && j <= 50; j++) {
           this.nodes[getIndex(i)].linkCount++;
           this.nodes[getIndex(count++)].linkCount++;
@@ -91,17 +91,20 @@ export class ShowComponent {
 
   ngOnInit() {
     let i = 4;
-    for(let node of this.nodes) {
-      if(node.id == '1' || node.id == '42' || node.id == '21') {
+    for (let node of this.nodes) {
+      if (node.id == '1' || node.id == '42' || node.id == '21') {
         node.timestamp = d[i].created_at;
         node.name = d[i].user.name;
-        node.text = d[i].text;
+        node.text = d[i].text.split(" ")[0];
+        node.url = d[i].text.split(" ")[1];
+
         i = Math.abs(i - 1) % 5;
       } else {
         node.timestamp = "Sat Apr 12 11:39:10 +0000 2019";
         node.name = "BowenZ";
         node.text = "Repost";
-      } 
+        node.url = "#";
+      }
     }
 
     // for (let node of this.nodes) {
